@@ -61,15 +61,15 @@ func checkHealthCheckStatus(resp *http.Response) {
 		if resp.StatusCode == http.StatusUnauthorized {
 			logger.Info(api.ReadyHint)
 		} else {
-			doc, _ := goquery.NewDocumentFromReader(resp.Body)
+			doc, _ := goquery.NewDocumentFromReader(resp.Body) 
 			alert := doc.Find(".message").Text()
 			if alert != "" {
-				logger.Error(errorHintBlock)
+				logger.Error(errorHintBlock) 
 			} else {
-				logger.Error(fmt.Sprintf(errorHintFailedToStart, resp.Status))
+				logger.Error(fmt.Sprintf(errorHintFailedToStart, resp.Status)) 
 			}
-			time.Sleep(time.Hour * sleepHours)
-			os.Exit(1)
+			// time.Sleep(time.Hour * sleepHours) 
+			// os.Exit(1) 
 		}
 	}
 }
