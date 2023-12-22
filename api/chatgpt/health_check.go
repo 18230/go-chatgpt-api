@@ -15,7 +15,7 @@ import (
 const (
 	healthCheckUrl         = "https://chat.openai.com/backend-api/accounts/check"
 	errorHintBlock         = "looks like you have bean blocked by OpenAI, please change to a new IP or have a try with WARP"
-	errorHintFailedToStart = "failed to start, please try again later: %s"
+	// errorHintFailedToStart = "failed to start, please try again later: %s"
 	sleepHours             = 8760 // 365 days
 )
 
@@ -65,9 +65,10 @@ func checkHealthCheckStatus(resp *http.Response) {
 			alert := doc.Find(".message").Text()
 			if alert != "" {
 				logger.Error(errorHintBlock)
-			} else {
-				logger.Error(fmt.Sprintf(errorHintFailedToStart, resp.Status))
-			}
+			} 
+			// else {
+			// 	logger.Error(fmt.Sprintf(errorHintFailedToStart, resp.Status))
+			// }
 			// time.Sleep(time.Hour * sleepHours)
 			// os.Exit(1)
 		}
