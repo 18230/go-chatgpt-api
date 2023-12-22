@@ -1,7 +1,7 @@
 package chatgpt
 
 import (
-	"fmt"
+	// "fmt"
 	"os"
 	"time"
 
