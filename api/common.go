@@ -160,6 +160,12 @@ func ReturnMessage(msg string) gin.H {
 
 func GetAccessToken(c *gin.Context) string {
 	accessToken := c.GetString(AuthorizationHeader)
+
+	// 去除accessToken的最后三个字符（针对业务特殊定制）
+	if len(accessToken) > 3 {
+		accessToken = accessToken[:len(accessToken)-3]
+	}
+
 	if !strings.HasPrefix(accessToken, "Bearer") {
 		return "Bearer " + accessToken
 	}
